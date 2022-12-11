@@ -8,6 +8,7 @@ export const HomeBox = styled.div`
   height: 100vh;
 `
 export const HeaderBox = styled.header`
+  top: calc(50% - 96px);
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -18,13 +19,20 @@ export const HeaderBox = styled.header`
   height: 192px;
   padding-bottom: 0.5em;
   background-color: #272a30;
+  transition: all 1s ease-in-out;
+`
+export const ProfileCardBox = styled.div`
+  background-color: red;
 `
 export const Div = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: ${props => props.gap};
-  width: min(80vw, 640px);
+  width: 100%;
+  margin: 0;
+  opacity: 1;
+  transition: all 0.75s ease-in-out;
 `
 export const Svg = styled.div`
   cursor: pointer;
