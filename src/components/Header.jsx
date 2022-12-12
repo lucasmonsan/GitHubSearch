@@ -17,45 +17,75 @@ export const Header = () => {
     const auxInput = document.getElementById("Input");
     const auxHeader = document.getElementById("HeaderBox");
     const auxLoading = document.getElementById("Loading");
+    const auxTitle1 = document.getElementById("Title1");
+    const auxTitle2 = document.getElementById("Title2");
+    const auxIcon = document.getElementById("Icon");
     
-    auxLogo.style.opacity = "0";
-    auxInput.style.opacity = "0";
-    auxLoading.style.opacity = "1";
+    // auxLogo.style.opacity = "0";
+    // auxInput.style.opacity = "0";
+    // auxLoading.style.opacity = "1";
 
-    axios.get(`https://api.github.com/users/${textInput}`)
-    .then(res => {
-      setProfile(res.data);
-    })
-    
-    axios.get(`https://api.github.com/users/${textInput}/repos`)
-    .then(res => {
-      setRepos(res.data);
-      
-      setTimeout(() => {
-        auxHeader.style.flexDirection = "row";   
-        auxHeader.style.borderRadius = "0 0 1em 1em";
-        auxHeader.style.height = "80px";
-        auxHeader.style.paddingBottom = "0";
-        auxHeader.style.top = "0"
-        auxHeader.style.boxShadow = "0 0 0.5em #000000";
-        auxLogo.style.width = "280px";
-        auxInput.style.width = "420px";
-        auxLoading.style.opacity = "0";
+    /*******************************/
+    setTimeout(() => {
+      auxHeader.style.flexDirection = "row";   
+      auxHeader.style.borderRadius = "0 0 1em 1em";
+      auxHeader.style.height = "80px";
+      auxHeader.style.paddingBottom = "0";
+      auxHeader.style.top = "0"
+      auxHeader.style.boxShadow = "0 0 0.5em #000000";
+      auxHeader.style.justifyContent = "space-between";
+      auxLogo.style.width = "280px";
+      auxInput.style.width = "420px";
+      auxLoading.style.opacity = "0";
+
+      if (window.innerWidth <= 540) {
+        auxTitle1.style.display = "none";
+        auxTitle2.style.display = "none";
+        auxIcon.style.left = "1em";
+        auxInput.style.maxWidth = "360px";
+      };
         
-        setTimeout(() => {
-          auxLogo.style.opacity = "1";
-          auxInput.style.opacity = "1";
-        },1000);
-      },1500);
-    })
+      setTimeout(() => {
+        auxLogo.style.opacity = "1";
+        auxInput.style.opacity = "1";
+      },1000);
+    },1500);
+    /********************************/
+
+    // axios.get(`https://api.github.com/users/${textInput}`)
+    // .then(res => {
+    //   setProfile(res.data);
+    // })
+    
+    // axios.get(`https://api.github.com/users/${textInput}/repos`)
+    // .then(res => {
+    //   setRepos(res.data);
+      
+    //   setTimeout(() => {
+    //     auxHeader.style.flexDirection = "row";   
+    //     auxHeader.style.borderRadius = "0 0 1em 1em";
+    //     auxHeader.style.height = "80px";
+    //     auxHeader.style.paddingBottom = "0";
+    //     auxHeader.style.top = "0"
+    //     auxHeader.style.boxShadow = "0 0 0.5em #000000";
+    //     auxLogo.style.width = "280px";
+    //     auxInput.style.width = "420px";
+    //     auxLoading.style.opacity = "0";
+        
+    //     setTimeout(() => {
+    //       auxLogo.style.opacity = "1";
+    //       auxInput.style.opacity = "1";
+    //     },1000);
+    //   },1500);
+    // })
   }
   
   return (
     <HeaderBox id="HeaderBox">
       <Div id="Logo">
-        <Title1>GitHub</Title1>
-        <Player autoplay loop src="https://assets4.lottiefiles.com/packages/lf20_5EI9XwtboP.json" style={{ height: "3.5em"}}/>
-        <Title2>Search</Title2>
+        <Title1 id="Title1">GitHub</Title1>
+        <Player id="Icon" autoplay loop src="https://assets4.lottiefiles.com/packages/lf20_5EI9XwtboP.json" style={{ height: "3.5em", border:"solid"}}/>
+        <Title2 id="Title2">Search</Title2>
       </Div>
       
       <Div id="Loading" position="absolute" opacity="0" zIndex="0">

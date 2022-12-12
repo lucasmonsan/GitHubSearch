@@ -2,10 +2,16 @@ import { RepoBox, Svg } from "../styles/containers"
 import { Strong } from "../styles/elements"
 import { RiGithubFill } from "react-icons/ri"
 import { Languages } from "./Languages"
+import { useEffect } from "react"
 
 export const RepoCard = ({ repo }) => {
+  useEffect(() => {
+    const auxRepo = document.getElementById("Repo");
+    auxRepo.style.opacity = "1";
+  },[])
+  
   return (
-    <RepoBox>
+    <RepoBox id="Repo">
       <Svg width="100%" maxWidth="100%" minHeight="96px" fontSize="3rem" bgColor="pink">
         <RiGithubFill/>
       </Svg>
@@ -17,7 +23,7 @@ export const RepoCard = ({ repo }) => {
       <Strong textAlign="center" padding="0.25em 0.5em" fontWeight="500" fontSize="0.8rem">
         {repo.description}
       </Strong>
-
+      
       <Languages repo={repo}/>
     </RepoBox>
   )

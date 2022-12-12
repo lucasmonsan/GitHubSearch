@@ -2,14 +2,19 @@ import styled from "styled-components";
 
 export const Input = styled.input`
 outline: none;
-width: min(80vw, 560px);
-height: 40px;
-padding: 0 0.25em;
-font-size: min(6vw, 1.25rem);
+width: min(60vw, 560px);
+height: fit-content;
+max-height: 40px;
+padding: 0.4em;
+font-size: min(4.975vw, 1.25rem);
 text-align: center;
 border: none;
 background-color: white;
 color: #2b2d42;
+
+@media (max-width: 760px) {
+  
+}
 `
 export const Title1 = styled.h1`
   line-height: 100%;

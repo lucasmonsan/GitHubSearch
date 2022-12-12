@@ -16,7 +16,7 @@ export const HeaderBox = styled.header`
   justify-content: center;
   gap: 1em;
   width: 100%;
-  height: 192px;
+  height: min(60vw,192px);
   padding-bottom: 0.5em;
   background-color: #272a30;
   box-shadow: 0 0 0 #000000;
@@ -48,7 +48,9 @@ export const ProfileBox = styled.section`
   height: 100%;
   max-height: 214px;
   border-radius: 8px;
+  opacity: 0;
   background-color: white;
+  transition: all 0.25s ease-in-out;
 
   @media (max-width: 400px) {
     grid-column-start: 1;
@@ -64,7 +66,9 @@ export const RepoBox = styled.div`
   height: 100%;
   max-height: 214px;
   border-radius: 8px;
+  opacity: 0;
   background-color: white;
+  transition: all 0.25s ease-in-out;
 `
 export const LanguagesBox = styled.div`
   display: flex;
@@ -93,12 +97,12 @@ export const Svg = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: ${props => props.width || "min(15vw, 100%)"};
+  width: ${props => props.width || "min(10vw, 100%)"};
   max-width: ${props => props.maxWidth || "40px"};
-  height: ${props => props.height || "40px"};
+  height: ${props => props.height || "fit-content"};
   min-height: ${props => props.minHeight} ;
-  padding: ${props => props.padding};
-  font-size: min(7vw, ${props => props.fontSize});
+  padding: ${props => props.padding || "0.3335em"};
+  font-size: min(6vw, ${props => props.fontSize});
   border-radius: ${props => props.radius};
   background-color: ${props => props.bgColor};
   color: ${props => props.color || "white"};
