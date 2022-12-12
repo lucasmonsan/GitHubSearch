@@ -1,14 +1,12 @@
-import { useState } from 'react'
-
-import { HomeBox } from '../styles/containers'
+import { HomeBox, Div } from '../styles/containers'
 import { Header } from '../components/Header'
+import { Results } from '../components/Results'
 
 export const Home = () => {
-  const [count, setCount] = useState(0)
-
   return (
     <HomeBox>
-      <Header/>
+      <Header/>       
+      <Results/>
     </HomeBox>
   )
 }
