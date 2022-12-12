@@ -1,9 +1,15 @@
+import { useEffect } from "react"
 import { Div, ImgContainer, ProfileBox } from "../styles/containers"
 import { Img, Strong } from "../styles/elements"
 
 export const ProfileCard = ({ profile }) => {
+  useEffect(() => {
+    const auxProfile = document.getElementById("Profile");
+    auxProfile.style.opacity = "1";
+  },[])
+  
   return (
-    <ProfileBox>
+    <ProfileBox id="Profile">
       <ImgContainer>
         <Img src={profile.avatar_url}/>
       </ImgContainer>

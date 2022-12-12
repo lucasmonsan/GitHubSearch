@@ -9,7 +9,7 @@ export const Results = () => {
   
   return (
     <ResultBox>
-      <ProfileCard profile={profile}/>
+      {profile.length > 0 && <ProfileCard profile={profile}/>}
       {repos.map(repo => <RepoCard key={repo.id} repo={repo}/>)}
       {console.log(repos)}
     </ResultBox>
