@@ -24,29 +24,43 @@ export const HeaderBox = styled.header`
 `
 export const ResultBox = styled.div`
   display: grid;
-  grid-template-columns: repeat(5,1fr);
+  grid-template-columns: repeat(6,1fr);
   justify-content: center;
+  align-items: flex-start;
   gap: 0.5em;
+  width: 100%;
+  height: fit-content;
+  max-width: 1440px;
   padding: 0.5em 1em;
   margin-top: 5em;
+
+  @media (max-width: 1340px) {grid-template-columns: repeat(5,1fr)}
+  @media (max-width: 1110px) {grid-template-columns: repeat(4,1fr)}
+  @media (max-width: 830px) {grid-template-columns: repeat(3,1fr)}
+  @media (max-width: 570px) {grid-template-columns: repeat(2,1fr)}
 `
 export const ProfileBox = styled.section`
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 264px;
+  width: 100%;
   height: 100%;
   max-height: 214px;
   border-radius: 8px;
   background-color: white;
+
+  @media (max-width: 400px) {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
 `
 export const RepoBox = styled.div`
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 264px;
+  width: 100%;
   height: 100%;
   max-height: 214px;
   border-radius: 8px;

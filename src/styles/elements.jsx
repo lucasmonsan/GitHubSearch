@@ -26,7 +26,7 @@ export const Title2 = styled.h2`
   color: white;
 `
 export const Img = styled.img`
-  width: 264px;
+  width: 100%;
 `
 export const Strong = styled.strong`
   width: 100%;
