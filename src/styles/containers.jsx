@@ -66,7 +66,7 @@ export const RepoBox = styled.div`
   height: 100%;
   max-height: 214px;
   border-radius: 8px;
-  opacity: 0;
+  opacity: 1;
   background-color: white;
   transition: all 0.25s ease-in-out;
 `
