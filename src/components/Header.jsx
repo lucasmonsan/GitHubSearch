@@ -8,74 +8,79 @@ import axios from "axios";
 import { Context } from "../Context";
 
 export const Header = () => {
-  const {setRepos, setProfile} = useContext(Context);  
+  const {setRepos, setProfile, setShowResult} = useContext(Context);  
   const [searchMode, setSearchMode] = useState(true);
   const [textInput, setTextInput] = useState("");
   
   function Searching () {
-    const auxLogo = document.getElementById("Logo");
-    const auxInput = document.getElementById("Input");
-    const auxHeader = document.getElementById("HeaderBox");
-    const auxLoading = document.getElementById("Loading");
-    const auxTitle1 = document.getElementById("Title1");
-    const auxTitle2 = document.getElementById("Title2");
-    const auxIcon = document.getElementById("Icon");
-    const auxRealyInput = document.getElementById("RealyInput");
+    setShowResult(false);
     
-    auxLogo.style.opacity = "0";
-    auxInput.style.opacity = "0";
-    auxLoading.style.opacity = "1";
-    
-    axios.get(`https://api.github.com/users/${textInput}`)
-    .then(res => {
-      setProfile(res.data);
-    })
-    
-    axios.get(`https://api.github.com/users/${textInput}/repos`)
-    .then(res => {
-      setRepos(res.data);
+    if (textInput.length === 0) {
+      searchMode ? alert("Digite o username") : alert("Digite o nome do repositório");
+    } else if (textInput.length < 5 && searchMode) {
+      alert("Digite um username com pelo menos 5 caracteres");
+    } else if (searchMode) {
+      const auxLogo = document.getElementById("Logo");
+      const auxInput = document.getElementById("Input");
+      const auxHeader = document.getElementById("HeaderBox");
+      const auxLoading = document.getElementById("Loading");
+      const auxTitle1 = document.getElementById("Title1");
+      const auxTitle2 = document.getElementById("Title2");
       
-      setTimeout(() => {
-        auxHeader.style.flexDirection = "row";   
-        auxHeader.style.borderRadius = "0 0 1em 1em";
-        auxHeader.style.height = "80px";
-        auxHeader.style.paddingBottom = "0";
-        auxHeader.style.top = "0"
-        auxHeader.style.boxShadow = "0 0 0.5em #000000";
-        auxHeader.style.justifyContent = "space-between";
-        auxHeader.style.gap = "0.5em";
-        auxLogo.style.width = "290px";
-        auxInput.style.width = "420px";
-        auxLoading.style.opacity = "0";
-        
-        if (window.innerWidth <= 540) {
-          auxHeader.style.height = "64px";
-          auxLogo.style.justifyContent = "flex-start";
-          auxLogo.style.marginLeft = "0.75em";
-          auxLogo.style.height = "38px";
-          auxInput.style.width = "100%";
-          auxInput.style.justifyContent = "flex-end";
-          auxInput.style.marginRight = "0.75em";
-          auxTitle1.style.display = "none";
-          auxTitle2.style.display = "none";
-          auxIcon.style.left = "1em";
-          auxIcon.style.minWidth = "40px";
-          auxRealyInput.style.width = "min(48vw, 360px)";
-        };
+      auxLoading.style.opacity = "1";
+      auxLogo.style.opacity = "0";
+      auxInput.style.opacity = "0";
+      
+      axios.get(`https://api.github.com/users/${textInput}`)
+      .then(profileRes => {
+        setTimeout(() => {
+          setProfile(profileRes.data);        
+          axios.get(`https://api.github.com/users/${textInput}/repos`).then(res => setRepos(res.data))
+        },1000)
         
         setTimeout(() => {
-          auxLogo.style.opacity = "1";
-          auxInput.style.opacity = "1";
+          auxLoading.style.opacity = "0";
+          
+          auxHeader.style.top = "0";
+          auxHeader.style.flexDirection = "row";
+          auxHeader.style.height = "80px";
+          auxHeader.style.padding = "0 0.75em";
+          auxHeader.style.borderRadius = "0.5em";
+          auxHeader.style.boxShadow = "0 0 0.5em #000000";
+          
+          auxLogo.style.width = "fit-content";
+          auxInput.style.width = "fit-content";
+          
+          if ((window.innerWidth <= 600) && (window.innerWidth > 540)) {
+            auxTitle1.style.fontSize = "min(4.5vw, 1.75rem)";
+            auxTitle2.style.fontSize = "min(4.5vw, 1.75rem)";
+          } else if ((window.innerWidth <= 540) && (window.innerWidth >= 320)) {            
+            auxTitle1.style.display = "none";
+            auxTitle2.style.display = "none";            
+            setTimeout(() => {auxHeader.style.justifyContent = "space-between"},1000)
+          } else if (window.innerWidth < 319) {
+            auxLogo.style.display = "none";
+            auxHeader.style.height = "64px";
+          }
+          
+          setTimeout(() => {
+            setShowResult(true);
+            auxLogo.style.opacity = "1";
+            auxInput.style.opacity = "1";
+          },1000)
         },1000);
-      },1500);
-    })
+      })
+      .catch(profileErr => {
+        console.log("Erro - " + profileErr);
+      })
+    }
   }
   
   return (
     <HeaderBox id="HeaderBox">
       <Div id="Logo">
         <Title1 id="Title1">GitHub</Title1>
-        <Player id="Icon" autoplay loop src="https://assets4.lottiefiles.com/packages/lf20_5EI9XwtboP.json" style={{ height: "3.5em" }}/>
+        <Player id="Icon" autoplay loop src="https://assets4.lottiefiles.com/packages/lf20_5EI9XwtboP.json" style={{ minWidth:"44px", height: "3.5em" }}/>
         <Title2 id="Title2">Search</Title2>
       </Div>
       

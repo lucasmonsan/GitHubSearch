@@ -2,14 +2,9 @@ import { useEffect } from "react"
 import { Div, ImgContainer, ProfileBox } from "../styles/containers"
 import { Img, Strong } from "../styles/elements"
 
-export const ProfileCard = ({ profile }) => {
-  useEffect(() => {
-    const auxProfile = document.getElementById("Profile");
-    auxProfile.style.opacity = "1";
-  },[])
-  
+export const ProfileCard = ({ profile }) => {  
   return (
-    <ProfileBox id="Profile">
+    <ProfileBox>
       <ImgContainer>
         <Img src={profile.avatar_url}/>
       </ImgContainer>
@@ -22,7 +17,7 @@ export const ProfileCard = ({ profile }) => {
         @{profile.login}
       </Strong>
       
-      <Strong padding="0.25em 0.35em" fontWeight="500" fontSize="0.75rem">
+      <Strong padding="0.25em 0.35em 0.5em 0.35em" fontWeight="500" fontSize="0.75rem">
         {profile.bio}
       </Strong>
     </ProfileBox>

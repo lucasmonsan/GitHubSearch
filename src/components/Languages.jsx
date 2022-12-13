@@ -12,7 +12,6 @@ export const Languages = ({ repo }) => {
     axios.get(repo.languages_url)
     .then(res => {
       setLanguages(res.data);
-      console.log(languages)
     })
   },[])
 

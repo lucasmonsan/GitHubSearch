@@ -17,7 +17,7 @@ export const HeaderBox = styled.header`
   gap: 1em;
   width: 100%;
   height: min(60vw,192px);
-  padding-bottom: 0.5em;
+  padding: 0 0.75em 0.5em 0.75em;
   background-color: #272a30;
   box-shadow: 0 0 0 #000000;
   transition: all 1s ease-in-out;
@@ -33,6 +33,8 @@ export const ResultBox = styled.div`
   max-width: 1440px;
   padding: 0.5em 1em;
   margin-top: 5em;
+  opacity: 0;
+  transition: all 0.75s ease-in-out;
 
   @media (max-width: 1340px) {grid-template-columns: repeat(5,1fr)}
   @media (max-width: 1110px) {grid-template-columns: repeat(4,1fr)}
@@ -48,7 +50,6 @@ export const ProfileBox = styled.section`
   height: 100%;
   max-height: 214px;
   border-radius: 8px;
-  opacity: 0;
   background-color: white;
   transition: all 0.25s ease-in-out;
 
@@ -66,7 +67,6 @@ export const RepoBox = styled.div`
   height: 100%;
   max-height: 214px;
   border-radius: 8px;
-  opacity: 1;
   background-color: white;
   transition: all 0.25s ease-in-out;
 `
@@ -89,6 +89,7 @@ export const Div = styled.div`
   gap: ${props => props.gap};
   width: ${props => props.width || "100%"};
   margin: 0;
+  padding: ${props => props.padding};
   opacity: ${props => props.opacity || 1};
   transition: all 0.75s ease-in-out;
 `
@@ -106,6 +107,10 @@ export const Svg = styled.div`
   border-radius: ${props => props.radius};
   background-color: ${props => props.bgColor};
   color: ${props => props.color || "white"};
+
+  @media (max-width: 540px) {
+    min-height: ${props => props.minHeightMobile};
+  }
 `
 export const ImgContainer = styled.div`
   display: flex;
