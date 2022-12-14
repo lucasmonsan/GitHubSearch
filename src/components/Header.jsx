@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Player } from '@lottiefiles/react-lottie-player';
 import { HeaderBox, Div } from "../styles/containers";
-import { Title1, Title2, Input } from "../styles/elements";
+import { Title1, Title2, Input, A } from "../styles/elements";
 import { BtnOption } from "./BtnOption";
 import { BtnSearch } from "./BtnSearch";
 import axios from "axios";
@@ -17,8 +17,8 @@ export const Header = () => {
     
     if (textInput.length === 0) {
       searchMode ? alert("Digite o username") : alert("Digite o nome do repositório");
-    } else if (textInput.length < 5 && searchMode) {
-      alert("Digite um username com pelo menos 5 caracteres");
+    } else if (textInput.length < 3 && searchMode) {
+      alert("Digite um username com pelo menos 3 caracteres");
     } else if (searchMode) {
       const auxLogo = document.getElementById("Logo");
       const auxInput = document.getElementById("Input");
@@ -78,11 +78,13 @@ export const Header = () => {
   
   return (
     <HeaderBox id="HeaderBox">
-      <Div id="Logo">
-        <Title1 id="Title1">GitHub</Title1>
-        <Player id="Icon" autoplay loop src="https://assets4.lottiefiles.com/packages/lf20_5EI9XwtboP.json" style={{ minWidth:"44px", height: "3.5em" }}/>
-        <Title2 id="Title2">Search</Title2>
-      </Div>
+      <A href="http://127.0.0.1:5173/">
+        <Div id="Logo">
+          <Title1 id="Title1">GitHub</Title1>
+          <Player id="Icon" autoplay loop src="https://assets4.lottiefiles.com/packages/lf20_5EI9XwtboP.json" style={{ minWidth:"44px", height: "3.5em" }}/>
+          <Title2 id="Title2">Search</Title2>
+        </Div>
+      </A>
       
       <Div id="Loading" position="absolute" opacity="0" zIndex="0">
         <Player autoplay loop src="https://lottie.host/c55acdb0-2f7f-4734-a668-ee12b599ed39/bR2xZrKLDp.json" style={{height:"10em"}}/>

@@ -43,3 +43,8 @@ export const Strong = styled.strong`
     font-size: min(${props => props.fontSizeMobile}, ${props => props.fontSize});
   }
 `
+export const A = styled.a`
+  z-index: 5;
+  cursor: pointer;
+  text-decoration: none;
+`
